@@ -34,7 +34,8 @@ SonarQube is an open-source static testing analysis software, it is used by deve
   ALTER USER sonar WITH ENCRYPTED PASSWORD 'admin';
   CREATE DATABASE sonarqube OWNER sonar;
   GRANT ALL PRIVILEGES ON DATABASE sonarqube to sonar;
-  ``` 
+  ```
+Exit from postgres and login as a root user
 
 1. Restart postgres database to take latest changes effect 
   ```sh 
@@ -78,18 +79,14 @@ apt install net-tools
 
 1. Update sonar.properties with below information 
   ```sh
-  sonar.jdbc.username=<sonar_database_username>
-  sonar.jdbc.password=<sonar_database_password>
-
-  #sonar.jdbc.username=sonar
-  #sonar.jdbc.password=admin
-  #sonar.jdbc.url=jdbc:postgresql://localhost/sonarqube
-  #sonar.search.javaOpts=-Xmx512m -Xms512m -XX:MaxDirectMemorySize=256m -XX:+HeapDumpOnOutOfMemoryError
+  sonar.jdbc.username=sonar
+  sonar.jdbc.password=admin
+  sonar.jdbc.url=jdbc:postgresql://localhost/sonarqube
+  sonar.search.javaOpts=-Xmx512m -Xms512m -XX:MaxDirectMemorySize=256m -XX:+HeapDumpOnOutOfMemoryError
   ``
 
-1. Create a `/etc/systemd/system/sonarqube.service` file start sonarqube service at the boot time 
+1. Create below entries in the mentioned file `/etc/systemd/system/sonarqube.service` file start sonarqube service at the boot time 
   ```sh   
-  cat >> /etc/systemd/system/sonarqube.service <<EOL
   [Unit]
   Description=SonarQube service
   After=syslog.target network.target
@@ -109,7 +106,6 @@ apt install net-tools
 
   [Install]
   WantedBy=multi-user.target
-  EOL
   ```
 
 1. Add sonar user and grant ownership to /opt/sonarqube directory 
