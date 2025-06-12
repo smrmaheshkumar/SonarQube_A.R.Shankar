@@ -36,6 +36,10 @@ SonarQube is an open-source static testing analysis software, it is used by deve
   GRANT ALL PRIVILEGES ON DATABASE sonarqube to sonar;
   ```
 Exit from postgres and login as a root user
+```sh
+exit
+exit
+```
 
 1. Restart postgres database to take latest changes effect 
   ```sh 
@@ -44,9 +48,9 @@ Exit from postgres and login as a root user
   ```
 `check point`: You should see postgres is running on 5432
 
-
-
+```sh
 apt install net-tools
+```
 
 `Source: https://docs.sonarqube.org/latest/requirements/requirements/`
 
@@ -72,7 +76,8 @@ apt install net-tools
  ## SonarQube Setup
 
 1. Download [soarnqube](https://www.sonarqube.org/downloads/) and extract it.   
-  ```sh 
+  ```sh
+  cd /opt
   wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-8.9.2.46101.zip
   unzip sonarqube-8.9.2.46101.zip
   ```
