@@ -78,11 +78,12 @@ apt install net-tools
 1. Download [soarnqube](https://www.sonarqube.org/downloads/) and extract it.   
   ```sh
   cd /opt
+  apt install unzip
   wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-8.9.2.46101.zip
   unzip sonarqube-8.9.2.46101.zip
   ```
 
-1. Update sonar.properties with below information
+2. Update sonar.properties with below information
   ```sh
   sonar.jdbc.username=sonar
   sonar.jdbc.password=admin
@@ -90,7 +91,7 @@ apt install net-tools
   sonar.search.javaOpts=-Xmx512m -Xms512m -XX:MaxDirectMemorySize=256m -XX:+HeapDumpOnOutOfMemoryError
   ```
 
-1. Create below entries in the mentioned file `/etc/systemd/system/sonarqube.service` file start sonarqube service at the boot time 
+3. Create below entries in the mentioned file `/etc/systemd/system/sonarqube.service` file start sonarqube service at the boot time 
   ```sh   
   [Unit]
   Description=SonarQube service
@@ -113,18 +114,17 @@ apt install net-tools
   WantedBy=multi-user.target
   ```
 
-1. Add sonar user and grant ownership to /opt/sonarqube directory 
+4. Add sonar user and grant ownership to /opt/sonarqube directory 
   ```sh 
   useradd -d /opt/sonarqube sonar
   chown -R sonar:sonar /opt/sonarqube
   ```
 
-1. Reload the demon and start sonarqube service 
+5. Reload the demon and start sonarqube service 
   ```sh 
   systemctl daemon-reload 
   systemctl start sonarqube.service 
   ```
-
 
 ## 🧹 CleanUp  
 
@@ -136,8 +136,6 @@ apt install net-tools
  2. start sonar service as a sonar user 
  3. user correct database credentials in the sonar.properties
  4. use instance which has atleast 2 GB of RAM
- 
-
    
 ## 🔗 My Profile
 [![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://www.udemy.com/user/ar-shankar/)  
@@ -145,5 +143,4 @@ apt install net-tools
 
 
   ### 💡 Help/Suggestions or 🐛 Bugs
-
 Thank you for your interest in contributing to our project. Whether it is a bug report, new feature, correction, or additional documentation or solutions, we greatly value feedback and contributions from our community. [Start here](/issues)   
